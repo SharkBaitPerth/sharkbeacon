@@ -7,6 +7,7 @@ GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(chan_list, GPIO.OUT)
 GPIO.output(chan_list, GPIO.LOW)  
+GPIO.output(11, GPIO.HIGH)  
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):

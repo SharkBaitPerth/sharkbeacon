@@ -10,12 +10,14 @@
 # Description:          init script for the Shark Beacon
 ### END INIT INFO
 
+# TODO: Error checking and well properly kill the process...
+
 PATH=/sbin:/bin:/usr/sbin:/usr/bin
 NAME=beacon
 DESC="Shark Beacon"
 WORKDIR=/opt/sharkbeacon
 PIDFILE=$WORKDIR/$NAME.pid
-DAEMON=python $WORKDIR/beacon.py
+DAEMON=$WORKDIR/launch.sh
 USER=beacon
 GROUP=beacon
 
@@ -30,7 +32,7 @@ case "$1" in
                 --make-pidfile \
                 --chuid $USER:$GROUP \
                 --chdir $WORKDIR \
-                --background \
+		--background \
                 --exec $DAEMON
 
         case "$?" in
@@ -78,7 +80,7 @@ case "$1" in
                                 --chuid $USER:$GROUP \
                                 --chdir $WORKDIR \
                                 --background \
-                                --exec $DAEMON
+                		--exec $DAEMON
                         case "$?" in
                                 0) echo "Restarted" ;;
                                 *) echo "Start Failed" ;;
