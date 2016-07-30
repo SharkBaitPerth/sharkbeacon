@@ -2,8 +2,7 @@ import RPi.GPIO as GPIO
 import paho.mqtt.client as mqtt
 
 # GPIO Setup
-chan_list = [11,13]
-state = 0
+chan_list = [11,13,15]
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(chan_list, GPIO.OUT)
 GPIO.setwarnings(False)
@@ -19,15 +18,9 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    global state
     print(msg.topic+" "+str(msg.payload))
-
-    if not state:
-      GPIO.output(chan_list, GPIO.HIGH)
-      state = 1
-    else:
-      GPIO.output(chan_list, GPIO.LOW)
-      state = 0
+    GPIO.output(chan_list, GPIO.LOW)
+    GPIO.output(chan_list[int(msg.payload)], GPIO.HIGH)
 
 client = mqtt.Client()
 client.on_connect = on_connect
