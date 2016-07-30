@@ -3,9 +3,9 @@ import paho.mqtt.client as mqtt
 
 # GPIO Setup
 chan_list = [11,13,15]
+GPIO.setwarnings(False)
 GPIO.setmode(GPIO.BOARD)
 GPIO.setup(chan_list, GPIO.OUT)
-GPIO.setwarnings(False)
 GPIO.output(chan_list, GPIO.LOW)  
 
 # The callback for when the client receives a CONNACK response from the server.

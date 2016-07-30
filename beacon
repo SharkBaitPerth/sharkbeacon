@@ -15,7 +15,7 @@ NAME=beacon
 DESC="Shark Beacon"
 WORKDIR=/opt/sharkbeacon
 PIDFILE=$WORKDIR/$NAME.pid
-DAEMON=$WORKDIR/beacon.py
+DAEMON=python $WORKDIR/beacon.py
 USER=beacon
 GROUP=beacon
 
