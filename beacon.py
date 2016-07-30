@@ -23,14 +23,14 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(msg.payload))
     GPIO.output(chan_list, GPIO.LOW)
     GPIO.output(chan_list[int(msg.payload)], GPIO.HIGH)
-    if int(msg.payload) > 0
-        GPIO.output(chan_list, GPIO.HIGH)
+    if int(msg.payload) > 0:
+        GPIO.output(chan_list[3], GPIO.HIGH)
         sleep(0.1)
-        GPIO.output(chan_list, GPIO.LOW)
+        GPIO.output(chan_list[3], GPIO.LOW)
         sleep(0.1)
-        GPIO.output(chan_list, GPIO.HIGH)
+        GPIO.output(chan_list[3], GPIO.HIGH)
         sleep(0.1)
-        GPIO.output(chan_list, GPIO.LOW)
+        GPIO.output(chan_list[3], GPIO.LOW)
 
 client = mqtt.Client()
 client.on_connect = on_connect
